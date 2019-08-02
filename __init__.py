@@ -21,9 +21,9 @@
 bl_info = {
     "name": "Lock View",
     "description": "Exposes rotation locking in the 3D View to a specific viewing angle",
-    "author": "Jason van Gumster (Fweeb)",
+    "author": "Jason van Gumster (Fweeb), forked by stilobique",
     "version": (1, 0, 0),
-    "blender": (2, 76, 0),
+    "blender": (2, 80, 0),
     "location": "3D View > Properties Region > View",
     "warning": "",
     "wiki_url": "",
@@ -40,12 +40,10 @@ def lock_ui(self, context):
 
 
 def register():
-    bpy.types.VIEW3D_PT_view3d_properties.append(lock_ui)
+    # bpy.types.VIEW3D_PT_view3d_properties.append(lock_ui)
+    bpy.types.VIEW3D_MT_editor_menus.append(lock_ui)
 
 
 def unregister():
-    bpy.types.VIEW3D_PT_view3d_properties.remove(lock_ui)
-
-
-if __name__ == "__main__":
-    register()
+    # bpy.types.VIEW3D_PT_view3d_properties.remove(lock_ui)
+    bpy.types.VIEW3D_MT_editor_menus.remove(lock_ui)
