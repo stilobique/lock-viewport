@@ -32,18 +32,25 @@ bl_info = {
 
 import bpy
 
+from .Views.lock_icon import load_icon
+
+classes = [
+    # Models,
+    # Views,
+    # Controller,
+]
+
 
 def lock_ui(self, context):
     layout = self.layout
+    load_icon()
 
     layout.prop(context.space_data.region_3d, 'lock_rotation', text='Lock View Rotation')
 
 
 def register():
-    # bpy.types.VIEW3D_PT_view3d_properties.append(lock_ui)
     bpy.types.VIEW3D_MT_editor_menus.append(lock_ui)
 
 
 def unregister():
-    # bpy.types.VIEW3D_PT_view3d_properties.remove(lock_ui)
     bpy.types.VIEW3D_MT_editor_menus.remove(lock_ui)
