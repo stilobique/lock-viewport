@@ -1,31 +1,34 @@
 import bpy
 import gpu
 import bgl
+
+from os.path import join
 from gpu_extras.batch import batch_for_shader
 
 
-def load_icon_picture(image_name):
+def load_icon_picture(image_name, path):
     picture = ''
     for icon in bpy.data.images:
         if icon.name == image_name:
             picture = bpy.data.images[image_name]
         else:
-            picture = bpy.data.images.load(r'W:\WIP Git\Blender-Setup\blender-addons\Lock-Viewport\Resources\Test.png')
+            picture = bpy.data.images.load(path)
+            break
 
     return picture
 
 
-def load_icon():
+def load_icon(path):
     shader = gpu.shader.from_builtin('2D_IMAGE')
     batch = batch_for_shader(
         shader, 'TRI_FAN',
         {
-            "pos": ((100, 100), (200, 100), (200, 200), (100, 200)),
+            "pos": ((100, 100), (128, 100), (128, 128), (100, 128)),
             "texCoord": ((0, 0), (1, 0), (1, 1), (0, 1)),
         },
     )
 
-    image = load_icon_picture('IconLock')
+    image = load_icon_picture('IconLock', join(path, 'Resources', 'Test.png'))
     if image.gl_load():
         raise Exception()
 

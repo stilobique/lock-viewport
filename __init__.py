@@ -31,6 +31,7 @@ bl_info = {
     "category": "3D View"}
 
 import bpy
+import os
 
 from .Views.lock_icon import load_icon
 
@@ -43,7 +44,7 @@ classes = [
 
 def lock_ui(self, context):
     layout = self.layout
-    load_icon()
+    load_icon(os.path.dirname(os.path.abspath(__file__)))
 
     layout.prop(context.space_data.region_3d, 'lock_rotation', text='Lock View Rotation')
 
