@@ -6,19 +6,7 @@ from os.path import join
 from gpu_extras.batch import batch_for_shader
 
 
-def load_icon_picture(image_name, path):
-    picture = ''
-    for icon in bpy.data.images:
-        if icon.name == image_name:
-            picture = bpy.data.images[image_name]
-        else:
-            picture = bpy.data.images.load(path)
-            break
-
-    return picture
-
-
-def load_icon(path):
+def load_icon(image):
     shader = gpu.shader.from_builtin('2D_IMAGE')
     batch = batch_for_shader(
         shader, 'TRI_FAN',
@@ -28,7 +16,6 @@ def load_icon(path):
         },
     )
 
-    image = load_icon_picture('IconLock', join(path, 'Resources', 'Test.png'))
     if image.gl_load():
         raise Exception()
 

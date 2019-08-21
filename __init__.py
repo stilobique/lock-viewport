@@ -41,10 +41,12 @@ classes = [
     # Controller,
 ]
 
+image = bpy.data.images.load(os.path.join(os.path.abspath(__file__), 'Resources', 'Test.png'))
+
 
 def lock_ui(self, context):
     layout = self.layout
-    load_icon(os.path.dirname(os.path.abspath(__file__)))
+    load_icon(image)
 
     layout.prop(context.space_data.region_3d, 'lock_rotation', text='Lock View Rotation')
 
