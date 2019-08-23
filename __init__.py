@@ -33,7 +33,7 @@ bl_info = {
 import bpy
 import os
 
-from .Views.lock_icon import load_icon
+# from .Views.lock_icon import load_icon
 
 classes = [
     # Models,
@@ -41,7 +41,7 @@ classes = [
     # Controller,
 ]
 
-image = bpy.data.images.load(os.path.join(os.path.abspath(__file__), 'Resources', 'Test.png'))
+# image = bpy.data.images.load(os.path.join(os.path.abspath(__file__), 'Resources', 'Test.png'))
 
 
 def lock_ui(self, context):
