@@ -31,6 +31,7 @@ def load_icon(path):
     def draw():
         bgl.glActiveTexture(bgl.GL_TEXTURE0)
         bgl.glBindTexture(bgl.GL_TEXTURE_2D, picture.bindcode)
+        bgl.glEnable(bgl.GL_FRAMEBUFFER_SRGB)
 
         shader.bind()
         shader.uniform_int("image", 0)

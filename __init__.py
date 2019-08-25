@@ -41,11 +41,9 @@ classes = [
     # Controller,
 ]
 
-image = bpy.data.images.load(os.path.join(os.path.abspath(__file__), 'Resources', 'Test.png'))
-
 
 def lock_ui(self, context):
-    load_icon(image)
+    load_icon(os.path.join(os.path.dirname(__file__)))
 
 
 def register():
