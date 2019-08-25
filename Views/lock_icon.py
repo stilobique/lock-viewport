@@ -6,22 +6,31 @@ from os.path import join
 from gpu_extras.batch import batch_for_shader
 
 
-def load_icon(image):
+def load_icon(path):
+    picture = ''
+    for icon in bpy.data.images:
+        if icon.name == 'lock-icon.tga':
+            picture = bpy.data.images[icon.name]
+            break
+        else:
+            picture = bpy.data.images.load(join(path, 'lock-icon.tga'))
+            break
+
     shader = gpu.shader.from_builtin('2D_IMAGE')
     batch = batch_for_shader(
         shader, 'TRI_FAN',
         {
-            "pos": ((100, 100), (128, 100), (128, 128), (100, 128)),
-            "texCoord": ((0, 0), (1, 0), (1, 1), (0, 1)),
+            "pos": ((100, 100), (200, 100), (200, 200), (100, 200)),
+            "texCoord": ((0, 0), (1, 0), (1, 0.5), (0, 0.5)),
         },
     )
 
-    if image.gl_load():
+    if picture.gl_load():
         raise Exception()
 
     def draw():
         bgl.glActiveTexture(bgl.GL_TEXTURE0)
-        bgl.glBindTexture(bgl.GL_TEXTURE_2D, image.bindcode)
+        bgl.glBindTexture(bgl.GL_TEXTURE_2D, picture.bindcode)
 
         shader.bind()
         shader.uniform_int("image", 0)
