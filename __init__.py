@@ -22,7 +22,7 @@ bl_info = {
     "name": "Lock View",
     "description": "Exposes rotation locking in the 3D View to a specific viewing angle",
     "author": "Jason van Gumster (Fweeb), forked by stilobique",
-    "version": (1, 0, 0),
+    "version": (1, 0, 1),
     "blender": (2, 80, 0),
     "location": "3D View > Properties Region > View",
     "warning": "",
@@ -33,7 +33,7 @@ bl_info = {
 import bpy
 import os
 
-# from .Views.lock_icon import load_icon
+from .Views.lock_icon import load_icon
 
 classes = [
     # Models,
@@ -41,14 +41,11 @@ classes = [
     # Controller,
 ]
 
-# image = bpy.data.images.load(os.path.join(os.path.abspath(__file__), 'Resources', 'Test.png'))
+image = bpy.data.images.load(os.path.join(os.path.abspath(__file__), 'Resources', 'Test.png'))
 
 
 def lock_ui(self, context):
-    layout = self.layout
-    # load_icon(image)
-
-    layout.prop(context.space_data.region_3d, 'lock_rotation', text='Lock View Rotation')
+    load_icon(image)
 
 
 def register():
