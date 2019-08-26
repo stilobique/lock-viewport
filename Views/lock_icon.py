@@ -6,7 +6,12 @@ from os.path import join
 from gpu_extras.batch import batch_for_shader
 
 
-def load_icon(path):
+def load_icon(path, state):
+    """
+    Function to draw the Lock Icon
+    :param path:
+    :return:
+    """
     picture = ''
     for icon in bpy.data.images:
         if icon.name == 'lock-icon.tga':
@@ -16,12 +21,16 @@ def load_icon(path):
             picture = bpy.data.images.load(join(path, 'lock-icon.tga'))
             break
 
+    if state:
+        uv_icon = ((0, 0), (1, 0), (1, 0.5), (0, 0.5))
+    else:
+        uv_icon = ((0, 0.5), (1, 0.5), (1, 1), (0, 1))
     shader = gpu.shader.from_builtin('2D_IMAGE')
     batch = batch_for_shader(
         shader, 'TRI_FAN',
         {
             "pos": ((100, 100), (200, 100), (200, 200), (100, 200)),
-            "texCoord": ((0, 0), (1, 0), (1, 0.5), (0, 0.5)),
+            "texCoord": uv_icon,
         },
     )
 

@@ -43,7 +43,7 @@ classes = [
 
 
 def lock_ui(self, context):
-    load_icon(os.path.join(os.path.dirname(__file__)))
+    load_icon(os.path.join(os.path.dirname(__file__)), state=False)
 
 
 def register():
