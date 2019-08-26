@@ -32,23 +32,30 @@ bl_info = {
 
 import bpy
 import os
+from bpy.utils import register_class, unregister_class
 
-from .Views.lock_icon import load_icon
+from .lock_icon import load_icon
+from .lock_ops import PrintOperator
 
 classes = [
     # Models,
+    PrintOperator
     # Views,
     # Controller,
 ]
 
 
 def lock_ui(self, context):
-    load_icon(os.path.join(os.path.dirname(__file__)), state=False)
+    lock = load_icon(os.path.join(os.path.dirname(__file__)), state=False)
 
 
 def register():
     bpy.types.VIEW3D_MT_editor_menus.append(lock_ui)
+    for cls in classes:
+        register_class(cls)
 
 
 def unregister():
+    for cls in reversed(classes):
+        unregister_class(cls)
     bpy.types.VIEW3D_MT_editor_menus.remove(lock_ui)

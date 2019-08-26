@@ -45,4 +45,7 @@ def load_icon(path, state):
         shader.uniform_int("image", 0)
         batch.draw(shader)
 
+    def event():
+        print('Not really important')
+
     bpy.types.SpaceView3D.draw_handler_add(draw, (), 'WINDOW', 'POST_PIXEL')
