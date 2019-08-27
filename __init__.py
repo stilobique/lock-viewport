@@ -36,12 +36,14 @@ from bpy.utils import register_class, unregister_class
 
 from .lock_icon import load_icon
 from .lock_ops import PrintOperator
-
+from .lock_datas import ViewportControl
 classes = [
     # Models,
-    PrintOperator
+    PrintOperator,
     # Views,
+    ViewportControl,
     # Controller,
+
 ]
 addon_keymaps = []
 

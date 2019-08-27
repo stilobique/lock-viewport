@@ -8,4 +8,5 @@ class PrintOperator(bpy.types.Operator):
 
     def execute(self, context):
         print('Call Me !')
+
         return {'FINISHED'}
