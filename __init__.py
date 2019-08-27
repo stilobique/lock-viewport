@@ -43,6 +43,7 @@ classes = [
     # Views,
     # Controller,
 ]
+addon_keymaps = []
 
 
 def lock_ui(self, context):
@@ -54,8 +55,18 @@ def register():
     for cls in classes:
         register_class(cls)
 
+    wm = bpy.context.window_manager
+    km = wm.keyconfigs.addon.keymaps.new(name='Object Mode', space_type='EMPTY')
+    kmi = km.keymap_items.new(PrintOperator.bl_idname, 'O', 'PRESS')
+    # kmi.properties.total = 4
+    addon_keymaps.append((km, kmi))
+
 
 def unregister():
     for cls in reversed(classes):
         unregister_class(cls)
     bpy.types.VIEW3D_MT_editor_menus.remove(lock_ui)
+
+    for km, kmi in addon_keymaps:
+        km.keymap_items.remove(kmi)
+    addon_keymaps.clear()
