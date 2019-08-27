@@ -57,6 +57,8 @@ def register():
     for cls in classes:
         register_class(cls)
 
+    bpy.types.Scene.Viewport = bpy.props.PointerProperty(type=ViewportControl)
+
     wm = bpy.context.window_manager
     km = wm.keyconfigs.addon.keymaps.new(name='Object Mode', space_type='EMPTY')
     kmi = km.keymap_items.new(PrintOperator.bl_idname, 'O', 'PRESS')
@@ -72,3 +74,5 @@ def unregister():
     for km, kmi in addon_keymaps:
         km.keymap_items.remove(kmi)
     addon_keymaps.clear()
+
+    del bpy.types.Scene.Viewport
