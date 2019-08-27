@@ -49,7 +49,7 @@ addon_keymaps = []
 
 
 def lock_ui(self, context):
-    lock = load_icon(os.path.join(os.path.dirname(__file__)), state=False)
+    lock = load_icon(os.path.join(os.path.dirname(__file__)))
 
 
 def register():

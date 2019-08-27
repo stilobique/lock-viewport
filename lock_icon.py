@@ -6,7 +6,7 @@ from os.path import join
 from gpu_extras.batch import batch_for_shader
 
 
-def load_icon(path, state):
+def load_icon(path):
     """
     Function to draw the Lock Icon
     :param path:
@@ -20,6 +20,8 @@ def load_icon(path, state):
         else:
             picture = bpy.data.images.load(join(path, 'lock-icon.tga'))
             break
+    scn = bpy.context.scene.Viewport
+    state = scn.lock_activate
 
     if state:
         uv_icon = ((0, 0), (1, 0), (1, 0.5), (0, 0.5))
